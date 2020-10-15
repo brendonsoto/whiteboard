@@ -1,5 +1,8 @@
 /** GLOBALS **/
 let canvas = document.getElementById('canvas');
+let penTool = document.getElementById('pen');
+let eraserTool = document.getElementById('eraser');
+let textTool = document.getElementById('text');
 let ctx = canvas.getContext('2d');
 let isDrawing = false;
 let canvasX = 0;
@@ -31,4 +34,16 @@ canvas.addEventListener('mousemove', (e) => {
   canvasY = (e.pageY / canvasClientHeight) * canvasHeight;
   ctx.lineTo(canvasX, canvasY);
   ctx.stroke();
+});
+
+penTool.addEventListener('click', (e) => {
+  console.log('CLICKED PEN');
+});
+
+eraserTool.addEventListener('click', (e) => {
+  console.log('CLICKED ERASER');
+});
+
+textTool.addEventListener('click', (e) => {
+  console.log('CLICKED TEXT');
 });
