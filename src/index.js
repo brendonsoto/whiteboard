@@ -46,9 +46,9 @@ canvas.addEventListener('mousemove', (e) => {
 });
 
 penTool.addEventListener('click', (e) => {
-  console.log('CLICKED PEN');
   // Enable Pen
   isPenEnabled = true;
+  ctx.globalCompositeOperation = 'source-over';
 
   // Set active class in tools
   penTool.className = 'active';
@@ -59,10 +59,10 @@ penTool.addEventListener('click', (e) => {
 });
 
 eraserTool.addEventListener('click', (e) => {
-  console.log('CLICKED ERASER');
-
-  // Disable Pen
-  isPenEnabled = false;
+  // Enable Pen (in this case the Pen is an Eraser)
+  // The globalCompositeOperation is what enables us to "erase"
+  isPenEnabled = true;
+  ctx.globalCompositeOperation = 'destination-out';
 
   // Set active class in tools
   eraserTool.className = 'active';
@@ -73,8 +73,6 @@ eraserTool.addEventListener('click', (e) => {
 });
 
 textTool.addEventListener('click', (e) => {
-  console.log('CLICKED TEXT');
-
   // Disable Pen
   isPenEnabled = false;
 
