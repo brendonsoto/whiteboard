@@ -1,10 +1,12 @@
 /** GLOBALS **/
+// DOM hooks
 let canvas = document.getElementById('canvas');
 let penTool = document.getElementById('pen');
 let eraserTool = document.getElementById('eraser');
 let textTool = document.getElementById('text');
+
+// Canvas
 let ctx = canvas.getContext('2d');
-let isDrawing = false;
 let canvasX = 0;
 let canvasY = 0;
 let canvasWidth = ctx.canvas.width;
@@ -12,38 +14,74 @@ let canvasHeight = ctx.canvas.height;
 let canvasClientWidth = ctx.canvas.clientWidth;
 let canvasClientHeight = ctx.canvas.clientHeight;
 
+// Functionality Flags
+let isPenDown = false;
+let isPenEnabled = false;
+
 /** EVENT LISTENERS **/
 canvas.addEventListener('mousedown', (e) => {
   canvasX = (e.pageX / canvasClientWidth) * canvasWidth;
   canvasY = (e.pageY / canvasClientHeight) * canvasHeight;
   ctx.beginPath();
   ctx.moveTo(canvasX, canvasY);
-  isDrawing = true;
+  isPenDown = true;
 });
 
 canvas.addEventListener('mouseup', (e) => {
   ctx.closePath();
-  isDrawing = false;
+  isPenDown = false;
 });
 
 canvas.addEventListener('mousemove', (e) => {
-  if (!isDrawing) {
+  if (!isPenDown) {
     return;
   }
-  canvasX = (e.pageX / canvasClientWidth) * canvasWidth;
-  canvasY = (e.pageY / canvasClientHeight) * canvasHeight;
-  ctx.lineTo(canvasX, canvasY);
-  ctx.stroke();
+
+  if (isPenEnabled) {
+    canvasX = (e.pageX / canvasClientWidth) * canvasWidth;
+    canvasY = (e.pageY / canvasClientHeight) * canvasHeight;
+    ctx.lineTo(canvasX, canvasY);
+    ctx.stroke();
+  }
 });
 
 penTool.addEventListener('click', (e) => {
   console.log('CLICKED PEN');
+  // Enable Pen
+  isPenEnabled = true;
+
+  // Set active class in tools
+  penTool.className = 'active';
+
+  // Unset any previous active class in tools
+  eraserTool.className = '';
+  textTool.className = '';
 });
 
 eraserTool.addEventListener('click', (e) => {
   console.log('CLICKED ERASER');
+
+  // Disable Pen
+  isPenEnabled = false;
+
+  // Set active class in tools
+  eraserTool.className = 'active';
+
+  // Unset any previous active class in tools
+  penTool.className = '';
+  textTool.className = '';
 });
 
 textTool.addEventListener('click', (e) => {
   console.log('CLICKED TEXT');
+
+  // Disable Pen
+  isPenEnabled = false;
+
+  // Set active class in tools
+  textTool.className = 'active';
+
+  // Unset any previous active class in tools
+  eraserTool.className = '';
+  penTool.className = '';
 });

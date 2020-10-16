@@ -51,3 +51,7 @@ body {
   margin-right: 50px;
   padding: 20px;
 }
+
+#tools ul li.active {
+  background-color: cyan;
+}
