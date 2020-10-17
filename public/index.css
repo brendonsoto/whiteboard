@@ -1,3 +1,4 @@
+/** GENERAL STYLING **/
 * {
   box-sizing: border-box;
 }
@@ -13,12 +14,40 @@ body {
   position: relative;
 }
 
-#canvas {
+strong {
+  font-size: 56px;
+}
+
+ul {
+  display: flex;
+  list-style: none;
+}
+
+ul li {
+  margin-right: 20px;
+}
+
+ul li button {
+  border: 1px solid black;
+  border-radius: 25%;
+  background: unset;
+  padding: 20px;
+  font-family: inherit;
+}
+
+canvas {
   display: block;
   height: 100%;
   width: 100%;
 }
 
+/** UTILITY CLASSES **/
+.hidden {
+  display: none !important;
+}
+
+/** APP SPECIFIC **/
+/** TOOLS **/
 #tools {
   border: 5px solid #000;
   border-radius: 5px;
@@ -36,27 +65,63 @@ body {
   right: 20px;
 }
 
-#tools strong {
-  font-size: 56px;
-}
-
-#tools ul {
-  display: flex;
-  list-style: none;
-}
-
-#tools ul li {
-  margin-right: 20px;
-}
-
-#tools ul li button {
-  border: 1px solid black;
-  border-radius: 25%;
-  background: unset;
-  padding: 20px;
-  font-family: inherit;
-}
-
-#tools ul li button.active {
+.tool.active {
   background-color: cyan;
+}
+
+.tool-container {
+  position: relative;
+
+  display: flex;
+  align-items: flex-start;
+}
+
+.tool-container > button + button {
+  margin-left: 5px;
+}
+
+/** Colour Picker **/
+[data-colour="red"] {
+  background-color: red;
+}
+[data-colour="blue"] {
+  background-color: blue;
+}
+[data-colour="green"] {
+  background-color: green;
+}
+[data-colour="yellow"] {
+  background-color: yellow;
+}
+[data-colour="purple"] {
+  background-color: purple;
+}
+[data-colour="black"] {
+  background-color: black;
+}
+
+.colour,
+.colour-choice {
+  border-radius: 50%;
+  padding: 15px;
+}
+
+.colour-choice.active {
+  box-shadow: 0px 0px 15px 0px rgba(0,0,0,1);
+}
+
+.tool-container .colour-picker {
+  position: absolute;
+  top: -150px;
+
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-rows: 1fr 1fr;
+  column-gap: 10px;
+  row-gap: 10px;
+
+  background: white;
+  border: 2px solid black;
+  border-radius: 20%;
+  padding: 10px;
 }

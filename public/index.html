@@ -13,9 +13,22 @@
     <div id="tools">
       <strong>Tools:</strong>
       <ul>
-        <li><button id="pen">Pen</button></li>
-        <li><button id="text">Text</button></li>
-        <li><button id="eraser">Eraser</button></li>
+        <li>
+          <div class="tool-container">
+            <button class="tool" id="pen">Pen</button>
+            <button class="colour" data-tool="pen" data-colour="black"></button>
+            <div class="colour-picker hidden" data-tool="pen">
+              <button class="colour-choice" data-tool="pen" data-colour="red"></button>
+              <button class="colour-choice" data-tool="pen" data-colour="blue"></button>
+              <button class="colour-choice" data-tool="pen" data-colour="green"></button>
+              <button class="colour-choice" data-tool="pen" data-colour="purple"></button>
+              <button class="colour-choice" data-tool="pen" data-colour="yellow"></button>
+              <button class="colour-choice active" data-tool="pen" data-colour="black"></button>
+            </div>
+          </div>
+        </li>
+        <li><button class="tool" id="text">Text</button></li>
+        <li><button class="tool" id="eraser">Eraser</button></li>
       </ul>
     </div>
     <noscript>You need to enable JavaScript to run this app.</noscript>
