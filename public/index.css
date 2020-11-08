@@ -18,6 +18,12 @@ strong {
   font-size: 56px;
 }
 
+textarea {
+  position: absolute;
+  left: 0;
+  top: 0;
+}
+
 ul {
   display: flex;
   list-style: none;
@@ -35,7 +41,8 @@ ul li button {
   font-family: inherit;
 }
 
-canvas {
+canvas,
+#whiteboard {
   display: block;
   height: 100%;
   width: 100%;
@@ -47,6 +54,10 @@ canvas {
 }
 
 /** APP SPECIFIC **/
+#whiteboard {
+  position: relative;
+}
+
 /** TOOLS **/
 #tools {
   border: 5px solid #000;
@@ -124,4 +135,9 @@ canvas {
   border: 2px solid black;
   border-radius: 20%;
   padding: 10px;
+}
+
+/** Text **/
+.add-text {
+  cursor: text;
 }

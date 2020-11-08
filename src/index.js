@@ -1,5 +1,6 @@
 /** GLOBALS **/
 // DOM hooks
+const whiteboard = document.getElementById('whiteboard');
 const canvas = document.getElementById('canvas');
 const penTool = document.getElementById('pen');
 const eraserTool = document.getElementById('eraser');
@@ -35,6 +36,17 @@ const setActiveTool = (toolId) => {
       elem.classList.remove('active');
     }
   });
+};
+
+/**
+ * Creates a textarea elem positioned at the coordinates given
+ */
+const createTextarea = (x, y) => {
+  const textarea = document.createElement('textarea');
+  const initText = document.createTextNode('Write something here!');
+  textarea.appendChild(initText);
+  textarea.style.transform = `translate(${x}px,${y}px)`;
+  whiteboard.insertAdjacentElement('beforeend', textarea);
 };
 
 /** EVENT LISTENERS **/
@@ -92,6 +104,7 @@ textTool.addEventListener('click', (e) => {
   isPenEnabled = false;
 
   setActiveTool('text');
+  whiteboard.classList.add('add-text');
 });
 
 /** COLOUR PIKCERS **/
@@ -124,4 +137,12 @@ colourChoices.forEach((elem) => {
       }
     });
   });
+});
+
+whiteboard.addEventListener('click', (e) => {
+  if (whiteboard.classList.contains('add-text')) {
+    whiteboard.classList.remove('add-text');
+    createTextarea(e.pageX, e.pageY);
+    setActiveTool('');
+  }
 });
