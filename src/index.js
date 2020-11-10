@@ -11,6 +11,8 @@ let colourChoices = document.querySelectorAll('.colour-choice');
 const tools = [penTool, eraserTool, textTool];
 
 // Canvas
+canvas.width = whiteboard.clientWidth;
+canvas.height = whiteboard.clientHeight;
 const ctx = canvas.getContext('2d');
 const canvasWidth = ctx.canvas.width;
 const canvasHeight = ctx.canvas.height;
@@ -50,6 +52,13 @@ const createTextarea = (x, y) => {
 };
 
 /** EVENT LISTENERS **/
+/** UTIL **/
+window.addEventListener('resize', () => {
+  canvas.width = document.documentElement.clientWidth;
+  canvas.height = document.documentElement.clientHeight * 0.8;
+});
+
+/** DRAWING **/
 canvas.addEventListener('mousedown', (e) => {
   // Close any active tool menus that may be open
   document
@@ -139,6 +148,7 @@ colourChoices.forEach((elem) => {
   });
 });
 
+/** TEXT TOOL **/
 whiteboard.addEventListener('click', (e) => {
   if (whiteboard.classList.contains('add-text')) {
     whiteboard.classList.remove('add-text');
