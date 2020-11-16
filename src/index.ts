@@ -38,6 +38,12 @@ const setActiveTool = (toolId) => {
       elem.classList.remove('active');
     }
   });
+
+  if (toolId === 'text') {
+    whiteboard.classList.add('add-text');
+  } else if (whiteboard.classList.contains('add-text')) {
+    whiteboard.classList.remove('add-text');
+  }
 };
 
 /**
