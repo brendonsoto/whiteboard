@@ -52,7 +52,8 @@ const setActiveTool = (toolId) => {
 const createTextarea = (x, y) => {
   const rowHeight = 10;
   const textarea = document.createElement('textarea');
-  textarea.rows = 1;
+  textarea.style.height = '30px';
+  textarea.style.width = '150px';
   textarea.style.transform = `translate(${x}px,${y}px)`;
   textarea.addEventListener('input', ({ target }) => {
     if (textarea.clientHeight !== textarea.scrollHeight) {
