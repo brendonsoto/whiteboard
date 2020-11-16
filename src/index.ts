@@ -48,6 +48,10 @@ const setActiveTool = (toolId) => {
 
 /**
  * Creates a textarea elem positioned at the coordinates given
+ *
+ * Events:
+ * - input: resize the textarea when the content goes beyond the current dimensions.
+ * - change: delete the element if there is no content
  */
 const createTextarea = (x, y) => {
   const rowHeight = 10;
@@ -59,6 +63,11 @@ const createTextarea = (x, y) => {
     if (textarea.clientHeight !== textarea.scrollHeight) {
       const newHeight = textarea.scrollHeight + rowHeight;
       textarea.style.height = `${newHeight}px`;
+    }
+  });
+  textarea.addEventListener('blur', ({ target }) => {
+    if (textarea.value.length === 0) {
+      textarea.parentNode.removeChild(textarea);
     }
   });
   whiteboard.insertAdjacentElement('beforeend', textarea);
