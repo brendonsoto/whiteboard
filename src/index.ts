@@ -165,7 +165,5 @@ colourChoices.forEach((elem) => {
 whiteboard.addEventListener('click', (e) => {
   if (whiteboard.classList.contains('add-text')) {
     createTextarea(e.pageX, e.pageY);
-    whiteboard.classList.remove('add-text');
-    setActiveTool('');
   }
 });
