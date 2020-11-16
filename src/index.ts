@@ -50,8 +50,16 @@ const setActiveTool = (toolId) => {
  * Creates a textarea elem positioned at the coordinates given
  */
 const createTextarea = (x, y) => {
+  const rowHeight = 10;
   const textarea = document.createElement('textarea');
+  textarea.rows = 1;
   textarea.style.transform = `translate(${x}px,${y}px)`;
+  textarea.addEventListener('input', ({ target }) => {
+    if (textarea.clientHeight !== textarea.scrollHeight) {
+      const newHeight = textarea.scrollHeight + rowHeight;
+      textarea.style.height = `${newHeight}px`;
+    }
+  });
   whiteboard.insertAdjacentElement('beforeend', textarea);
   textarea.focus();
 };
