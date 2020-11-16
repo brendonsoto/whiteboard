@@ -1,7 +1,7 @@
 /** GLOBALS **/
 // DOM hooks
 const whiteboard = document.getElementById('whiteboard');
-const canvas = document.getElementById('canvas');
+const canvas = <HTMLCanvasElement>document.getElementById('canvas');
 const penTool = document.getElementById('pen');
 const eraserTool = document.getElementById('eraser');
 const textTool = document.getElementById('text');
@@ -118,7 +118,13 @@ textTool.addEventListener('click', (e) => {
 
 /** COLOUR PIKCERS **/
 colourPickerButtons.forEach((elem) => {
-  elem.addEventListener('click', ({ target: { dataset } }) => {
+  elem.addEventListener('click', (e) => {
+    if (!(e.target instanceof HTMLButtonElement)) {
+      return;
+    }
+    const {
+      target: { dataset },
+    } = e;
     document
       .querySelector(`.colour-picker[data-tool=${dataset.tool}]`)
       .classList.toggle('hidden');
@@ -126,19 +132,26 @@ colourPickerButtons.forEach((elem) => {
 });
 
 colourChoices.forEach((elem) => {
-  elem.addEventListener('click', ({ target: { dataset } }) => {
+  elem.addEventListener('click', (e) => {
+    if (!(e.target instanceof HTMLButtonElement)) {
+      return;
+    }
+    const {
+      target: { dataset },
+    } = e;
+
     console.log('COLOUR CLICKED', dataset.colour);
 
     // Set the stroke colour
     ctx.strokeStyle = dataset.colour;
 
     // Set the colour of the corresponding colour picker button to the active colour
-    document.querySelector(
+    document.querySelector<HTMLButtonElement>(
       `.colour[data-tool=${dataset.tool}]`,
     ).dataset.colour = dataset.colour;
 
     // Set the active class
-    colourChoices.forEach((elem) => {
+    colourChoices.forEach((elem: HTMLButtonElement) => {
       if (elem.dataset.colour === dataset.colour) {
         elem.classList.add('active');
       } else if (elem.classList.contains('active')) {
@@ -151,8 +164,8 @@ colourChoices.forEach((elem) => {
 /** TEXT TOOL **/
 whiteboard.addEventListener('click', (e) => {
   if (whiteboard.classList.contains('add-text')) {
-    whiteboard.classList.remove('add-text');
     createTextarea(e.pageX, e.pageY);
+    whiteboard.classList.remove('add-text');
     setActiveTool('');
   }
 });
