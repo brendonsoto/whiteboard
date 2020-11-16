@@ -45,10 +45,9 @@ const setActiveTool = (toolId) => {
  */
 const createTextarea = (x, y) => {
   const textarea = document.createElement('textarea');
-  const initText = document.createTextNode('Write something here!');
-  textarea.appendChild(initText);
   textarea.style.transform = `translate(${x}px,${y}px)`;
   whiteboard.insertAdjacentElement('beforeend', textarea);
+  textarea.focus();
 };
 
 /** EVENT LISTENERS **/
