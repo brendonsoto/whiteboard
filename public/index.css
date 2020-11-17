@@ -21,9 +21,16 @@ strong {
 
 textarea {
   background-color: transparent;
+  border: none;
+  resize: none;
   position: absolute;
   left: 0;
   top: 0;
+}
+
+textarea:focus {
+  border: 1px solid black;
+  resize: both;
 }
 
 ul {
