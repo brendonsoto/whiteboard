@@ -186,7 +186,11 @@ colourChoices.forEach((elem) => {
 
 /** TEXT TOOL **/
 whiteboard.addEventListener('click', (e) => {
-  if (whiteboard.classList.contains('add-text')) {
+  const targetElem = e.target as HTMLElement;
+  if (
+    whiteboard.classList.contains('add-text') &&
+    targetElem.tagName !== 'TEXTAREA'
+  ) {
     createTextarea(e.pageX, e.pageY);
   }
 });
