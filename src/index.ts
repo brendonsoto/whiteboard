@@ -154,16 +154,16 @@ colourPickerButtons.forEach((elem) => {
   });
 });
 
-colourChoices.forEach((elem) => {
-  elem.addEventListener('click', (e) => {
-    if (!(e.target instanceof HTMLButtonElement)) {
+// Kudos to the forever helpful Christian Heilmann
+// https://christianheilmann.com/2020/11/01/back-to-basics-event-delegation/
+document
+  .querySelector('.colour-picker[data-tool=pen]')
+  .addEventListener('click', (e) => {
+    const { target } = e;
+    if (!(target instanceof HTMLButtonElement)) {
       return;
     }
-    const {
-      target: { dataset },
-    } = e;
-
-    console.log('COLOUR CLICKED', dataset.colour);
+    const { dataset } = target;
 
     // Set the stroke colour
     ctx.strokeStyle = dataset.colour;
@@ -182,7 +182,6 @@ colourChoices.forEach((elem) => {
       }
     });
   });
-});
 
 /** TEXT TOOL **/
 whiteboard.addEventListener('click', (e) => {
