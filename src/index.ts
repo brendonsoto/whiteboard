@@ -18,8 +18,12 @@ const canvasWidth = ctx.canvas.width;
 const canvasHeight = ctx.canvas.height;
 const canvasClientWidth = ctx.canvas.clientWidth;
 const canvasClientHeight = ctx.canvas.clientHeight;
+const defaultLineWidth = 10;
+const eraserLineWidth = 20;
 let canvasX = 0;
 let canvasY = 0;
+
+ctx.lineWidth = defaultLineWidth;
 
 // Functionality Flags
 let isPenDown = false;
@@ -115,6 +119,7 @@ canvas.addEventListener('mousemove', (e) => {
 });
 
 penTool.addEventListener('click', (e) => {
+  ctx.lineWidth = defaultLineWidth;
   // Enable Pen
   isPenEnabled = true;
   ctx.globalCompositeOperation = 'source-over';
@@ -123,6 +128,7 @@ penTool.addEventListener('click', (e) => {
 });
 
 eraserTool.addEventListener('click', (e) => {
+  ctx.lineWidth = eraserLineWidth;
   // Enable Pen (in this case the Pen is an Eraser)
   // The globalCompositeOperation is what enables us to "erase"
   isPenEnabled = true;
