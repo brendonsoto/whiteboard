@@ -30,11 +30,18 @@ strong {
   left: 0;
   top: 0;
   font-size: 24px;
+
+  /* Disable any interactions until the text tool is active */
+  pointer-events: none;
 }
 
 #whiteboard textarea:focus {
   border: 1px solid black;
   resize: both;
+}
+
+#whiteboard.add-text textarea {
+  pointer-events: all;
 }
 
 ul {

@@ -63,6 +63,7 @@ const createTextarea = (x, y) => {
   textarea.style.height = '30px';
   textarea.style.width = '150px';
   textarea.style.transform = `translate(${x}px,${y}px)`;
+
   textarea.addEventListener('input', ({ target }) => {
     if (textarea.clientHeight !== textarea.scrollHeight) {
       const newHeight = textarea.scrollHeight + rowHeight;
@@ -197,6 +198,17 @@ whiteboard.addEventListener('click', (e) => {
     targetElem.tagName !== 'TEXTAREA'
   ) {
     createTextarea(e.pageX, e.pageY);
+  }
+});
+
+whiteboard.addEventListener('focusin', (e) => {
+  const targetElem = e.target as HTMLElement;
+
+  if (
+    targetElem.tagName === 'TEXTAREA' &&
+    !whiteboard.classList.contains('add-text')
+  ) {
+    e.preventDefault();
   }
 });
 
