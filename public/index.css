@@ -11,13 +11,11 @@ html, body {
 }
 
 body {
-  /* display: grid; */
-  /* grid-template-columns: 80% 20%; */
-  /* grid-template-rows: 80% 20%; */
-  /* grid-template-areas: */
-  /*   "whiteboard side" */
-  /*   "tools side" */
   position: relative;
+}
+
+button {
+  cursor: pointer;
 }
 
 strong {
@@ -72,8 +70,10 @@ button.tool {
   border: 1px solid black;
   border-radius: 25%;
   background: unset;
-  padding: 20px;
+  padding: 15px;
   font-family: inherit;
+  font-size: 28px;
+  width: 70px;
 }
 
 #tools {
@@ -213,15 +213,41 @@ button.tool {
   margin-top: auto;
 }
 
+
 /** ADMIN **/
 #admin ul {
   display: block;
   list-style: initial;
+  padding-left: 20px;
+}
+
+#admin li {
+  font-size: 18px;
+  margin-right: 0;
+}
+
+#admin li span {
+  display: flex;
+  align-items: center;
+}
+
+#admin button {
+  appearance: none;
+  border: 1px solid #000;
+  border-radius: 5px;
+  margin-left: 5px;
+  padding: 5px;
+  width: 40px;
+}
+
+#admin button:first-child {
+  margin-left: auto;
 }
 
 #admin .side-footer button {
   width: 100%;
 }
+
 
 /** CHAT **/
 #chat .side-footer {

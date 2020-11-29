@@ -5,7 +5,9 @@
     <link rel="icon" href="/favicon.ico" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="description" content="Web site created using create-snowpack-app" />
+    <link rel="stylesheet" type="text/css" href="/css/all.css" />
     <link rel="stylesheet" type="text/css" href="/index.css" />
+    <script defer src="/js/all.js"></script>
     <title>Snowpack App</title>
   </head>
   <body>
@@ -17,7 +19,9 @@
       <ul>
         <li>
           <div class="tool-container">
-            <button class="tool" id="pen">Pen</button>
+            <button class="tool" id="pen">
+              <i class="fas fa-pen"></i>
+            </button>
             <button class="colour" data-tool="pen" data-colour="black"></button>
             <div class="colour-picker hidden" data-tool="pen">
               <button class="colour-choice" data-tool="pen" data-colour="red"></button>
@@ -29,8 +33,8 @@
             </div>
           </div>
         </li>
-        <li><button class="tool" id="text">Text</button></li>
-        <li><button class="tool" id="eraser">Eraser</button></li>
+        <li><button class="tool" id="text">T</button></li>
+        <li><button class="tool" id="eraser"><i class="fas fa-eraser"></i></button></li>
       </ul>
     </section>
     <section id="side">
@@ -41,7 +45,13 @@
       <div class="component active" id="admin">
         <ul>
           <li class="admin">Ms. S</li>
-          <li>Sam <button>edit</button><button>kick</button></li>
+          <li>
+            <span>
+              Sam
+              <button title="Disable student from painting"><i class="fas fa-tint"></i></button>
+              <button title="Disable student from chatting"><i class="fas fa-comment"></i></button>
+            </span>
+          </li>
         </ul>
         <div class="side-footer">
           <button>Copy room link</button>
