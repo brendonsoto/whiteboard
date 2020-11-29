@@ -29,6 +29,7 @@ strong {
   position: absolute;
   left: 0;
   top: 0;
+  font-size: 24px;
 }
 
 #whiteboard textarea:focus {
@@ -223,6 +224,7 @@ button.tool {
 
 #admin li {
   font-size: 18px;
+  margin-bottom: 10px;
   margin-right: 0;
 }
 
@@ -242,6 +244,10 @@ button.tool {
 
 #admin button:first-child {
   margin-left: auto;
+}
+
+#admin .side-footer {
+  display: flex;
 }
 
 #admin .side-footer button {

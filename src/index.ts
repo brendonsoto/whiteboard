@@ -18,7 +18,7 @@ const canvasWidth = ctx.canvas.width;
 const canvasHeight = ctx.canvas.height;
 const canvasClientWidth = ctx.canvas.clientWidth;
 const canvasClientHeight = ctx.canvas.clientHeight;
-const defaultLineWidth = 10;
+const defaultLineWidth = 5;
 const eraserLineWidth = 20;
 let canvasX = 0;
 let canvasY = 0;
@@ -221,4 +221,9 @@ document.querySelector('#selector').addEventListener('click', (e) => {
       node.classList.add('active');
     }
   });
+});
+
+/** ADMIN **/
+document.querySelector('#clear-btn').addEventListener('click', () => {
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
 });
