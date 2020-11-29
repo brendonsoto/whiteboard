@@ -12,14 +12,18 @@ html, body {
 
 body {
   display: grid;
+  grid-template-columns: 80% 20%;
   grid-template-rows: 80% 20%;
+  grid-template-areas:
+    "whiteboard side"
+    "tools side"
 }
 
 strong {
   font-size: 56px;
 }
 
-textarea {
+#whiteboard textarea {
   background-color: transparent;
   border: none;
   resize: none;
@@ -28,7 +32,7 @@ textarea {
   top: 0;
 }
 
-textarea:focus {
+#whiteboard textarea:focus {
   border: 1px solid black;
   resize: both;
 }
@@ -40,14 +44,6 @@ ul {
 
 ul li {
   margin-right: 20px;
-}
-
-ul li button {
-  border: 1px solid black;
-  border-radius: 25%;
-  background: unset;
-  padding: 20px;
-  font-family: inherit;
 }
 
 canvas {
@@ -62,11 +58,22 @@ canvas {
 
 /** APP SPECIFIC **/
 #whiteboard {
+  grid-area: whiteboard;
   position: relative;
 }
 
 /** TOOLS **/
+button.tool {
+  border: 1px solid black;
+  border-radius: 25%;
+  background: unset;
+  padding: 20px;
+  font-family: inherit;
+}
+
 #tools {
+  grid-area: tools;
+
   border-top: 5px solid #000;
 
   display: flex;
@@ -142,3 +149,35 @@ canvas {
 .add-text {
   cursor: text;
 }
+
+
+/** SIDE **/
+#side {
+  grid-area: side;
+
+  display: flex;
+  flex-flow: column;
+
+  border-left: 5px solid #000;
+}
+
+#side .component {
+  /* display: flex; */
+  /* flex-flow: column; */
+}
+
+#side .component:not(.active) {
+  display: none;
+}
+
+#side .side-footer {
+  align-self: flex-end;
+}
+
+/** ADMIN **/
+#admin ul {
+  display: block;
+  list-style: initial;
+}
+
+/** CHAT **/

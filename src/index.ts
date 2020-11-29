@@ -199,3 +199,26 @@ whiteboard.addEventListener('click', (e) => {
     createTextarea(e.pageX, e.pageY);
   }
 });
+
+/** SIDE **/
+// Toggle views
+document.querySelector('#selector').addEventListener('click', (e) => {
+  // Get the selected view
+  const { target } = e;
+  if (!(target instanceof HTMLButtonElement)) {
+    return;
+  }
+  const {
+    dataset: { view },
+  } = target;
+
+  // Set the selected view as active
+  document.querySelectorAll('.component').forEach((node) => {
+    if (node.classList.contains('active')) {
+      node.classList.remove('active');
+    }
+    if (node.id === view) {
+      node.classList.add('active');
+    }
+  });
+});

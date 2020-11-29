@@ -9,10 +9,10 @@
     <title>Snowpack App</title>
   </head>
   <body>
-    <div id="whiteboard">
+    <section id="whiteboard">
       <canvas id="canvas"></canvas>
-    </div>
-    <div id="tools">
+    </section>
+    <section id="tools">
       <strong>Tools:</strong>
       <ul>
         <li>
@@ -32,7 +32,28 @@
         <li><button class="tool" id="text">Text</button></li>
         <li><button class="tool" id="eraser">Eraser</button></li>
       </ul>
-    </div>
+    </section>
+    <section id="side">
+      <header id="selector">
+        <button class="active" data-view="admin">Admin</button>
+        <button data-view="chat">Chat</button>
+      </header>
+      <div class="component active" id="admin">
+        <ul>
+          <li class="admin">Ms. S</li>
+          <li>Sam <button>edit</button><button>kick</button></li>
+        </ul>
+        <div class="side-footer">
+          <button>Copy room link</button>
+        </div>
+      </div>
+      <div class="component" id="chat">
+        <div class="side-footer">
+          <textarea id="msg" name="msg" cols="30" rows="1"></textarea>
+          <button>Send</button>
+        </div>
+      </div>
+    </section>
     <noscript>You need to enable JavaScript to run this app.</noscript>
     <script type="module" src="/_dist_/index.js"></script>
     <!--
