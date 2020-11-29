@@ -11,12 +11,13 @@ html, body {
 }
 
 body {
-  display: grid;
-  grid-template-columns: 80% 20%;
-  grid-template-rows: 80% 20%;
-  grid-template-areas:
-    "whiteboard side"
-    "tools side"
+  /* display: grid; */
+  /* grid-template-columns: 80% 20%; */
+  /* grid-template-rows: 80% 20%; */
+  /* grid-template-areas: */
+  /*   "whiteboard side" */
+  /*   "tools side" */
+  position: relative;
 }
 
 strong {
@@ -58,8 +59,12 @@ canvas {
 
 /** APP SPECIFIC **/
 #whiteboard {
-  grid-area: whiteboard;
-  position: relative;
+  /* grid-area: whiteboard; */
+  /* position: relative; */
+
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  z-index: 1;
 }
 
 /** TOOLS **/
@@ -72,9 +77,15 @@ button.tool {
 }
 
 #tools {
-  grid-area: tools;
+  /* grid-area: tools; */
+  position: absolute;
+  bottom: 50px;
+  left: 50%;
+  transform: translateX(-50%);
 
-  border-top: 5px solid #000;
+  background: #fff;
+  border: 5px solid #000;
+  border-radius: 20px;
 
   display: flex;
   align-items: center;
@@ -82,6 +93,8 @@ button.tool {
 
   /* height: 150px; */
   padding: 15px;
+
+  z-index: 2;
 }
 
 .tool.active {
@@ -153,17 +166,43 @@ button.tool {
 
 /** SIDE **/
 #side {
-  grid-area: side;
+  /* grid-area: side; */
+  position: absolute;
+  right: 50px;
+  top: 20px;
+
+  height: 75%;
+  width: 320px;
 
   display: flex;
   flex-flow: column;
 
-  border-left: 5px solid #000;
+  background: #fff;
+  border: 5px solid #000;
+  border-radius: 20px;
+  padding: 15px;
+
+  z-index: 2;
+}
+
+#side header {
+  display: flex;
+  padding-bottom: 10px;
+  border-bottom: 5px solid #000;
+}
+
+#side header button {
+  flex: 1 1 auto;
+}
+
+#side header button + button {
+  margin-left: 10px;
 }
 
 #side .component {
-  /* display: flex; */
-  /* flex-flow: column; */
+  display: flex;
+  flex-flow: column;
+  height: 100%;
 }
 
 #side .component:not(.active) {
@@ -171,7 +210,7 @@ button.tool {
 }
 
 #side .side-footer {
-  align-self: flex-end;
+  margin-top: auto;
 }
 
 /** ADMIN **/
@@ -180,4 +219,29 @@ button.tool {
   list-style: initial;
 }
 
+#admin .side-footer button {
+  width: 100%;
+}
+
 /** CHAT **/
+#chat .side-footer {
+  display: flex;
+}
+
+#chat textarea {
+  border: 1px solid #000;
+  border-radius: 5px;
+  flex: 5 1 auto;
+  resize: none;
+}
+
+#chat .side-footer button {
+  appearance: none;
+  background: cyan;
+  border: 1px solid #000;
+  border-radius: 5px;
+  font-size: 22px;
+  font-weight: bold;
+  flex: 1 1 auto;
+  margin-left: 5px;
+}
