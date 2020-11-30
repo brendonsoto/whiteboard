@@ -1,0 +1,37 @@
+/*!
+ * Font Awesome Free 5.15.1 by @fontawesome - https://fontawesome.com
+ * License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License)
+ */
+.fa,
+.fas,
+.far,
+.fal,
+.fad,
+.fab {
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
+  display: inline-block;
+  font-style: normal;
+  font-variant: normal;
+  text-rendering: auto;
+  line-height: 1; }
+
+/* Font Awesome uses the Unicode Private Use Area (PUA) to ensure screen
+readers do not read off random characters that represent icons */
+.fa-pen:before {
+  content: "\f304"; }
+
+.fa-eraser:before {
+  content: "\f12d"; }
+
+.fa-tint:before {
+  content: "\f043"; }
+
+.fa-tint-slash:before {
+  content: "\f5c7"; }
+
+.fa-comment:before {
+  content: "\f075"; }
+
+.fa-comment-slash:before {
+  content: "\f4b3"; }

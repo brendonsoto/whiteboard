@@ -16,6 +16,9 @@ body {
 
 button {
   cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 strong {
@@ -82,6 +85,7 @@ button.tool {
   font-family: inherit;
   font-size: 28px;
   width: 70px;
+  height: 70px;
 }
 
 #tools {
@@ -205,6 +209,11 @@ button.tool {
 
 #side header button + button {
   margin-left: 10px;
+}
+
+#side button img {
+  display: block;
+  height: 28px;
 }
 
 #side .component {
