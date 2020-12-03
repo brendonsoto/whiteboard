@@ -51,32 +51,24 @@ const setActiveTool = (toolId) => {
 };
 
 /**
- * Creates a textarea elem positioned at the coordinates given
+ * Creates a textbox positioned at the coordinates given
  *
  * Events:
  * - input: resize the textarea when the content goes beyond the current dimensions.
  * - change: delete the element if there is no content
  */
-const createTextarea = (x, y) => {
-  const rowHeight = 10;
-  const textarea = document.createElement('textarea');
-  textarea.style.height = '30px';
-  textarea.style.width = '150px';
-  textarea.style.transform = `translate(${x}px,${y}px)`;
+const createTextbox = (x, y) => {
+  const textbox = document.createElement('div');
+  textbox.setAttribute('contenteditable', 'true');
+  textbox.style.transform = `translate(${x}px,${y}px)`;
 
-  textarea.addEventListener('input', ({ target }) => {
-    if (textarea.clientHeight !== textarea.scrollHeight) {
-      const newHeight = textarea.scrollHeight + rowHeight;
-      textarea.style.height = `${newHeight}px`;
+  textbox.addEventListener('blur', ({ target }) => {
+    if (textbox.textContent.length === 0) {
+      textbox.parentNode.removeChild(textbox);
     }
   });
-  textarea.addEventListener('blur', ({ target }) => {
-    if (textarea.value.length === 0) {
-      textarea.parentNode.removeChild(textarea);
-    }
-  });
-  whiteboard.insertAdjacentElement('beforeend', textarea);
-  textarea.focus();
+  whiteboard.insertAdjacentElement('beforeend', textbox);
+  textbox.focus();
 };
 
 /** EVENT LISTENERS **/
@@ -195,9 +187,9 @@ whiteboard.addEventListener('click', (e) => {
   const targetElem = e.target as HTMLElement;
   if (
     whiteboard.classList.contains('add-text') &&
-    targetElem.tagName !== 'TEXTAREA'
+    targetElem.tagName !== 'DIV'
   ) {
-    createTextarea(e.pageX, e.pageY);
+    createTextbox(e.pageX, e.pageY);
   }
 });
 
@@ -205,7 +197,7 @@ whiteboard.addEventListener('focusin', (e) => {
   const targetElem = e.target as HTMLElement;
 
   if (
-    targetElem.tagName === 'TEXTAREA' &&
+    targetElem.tagName === 'DIV' &&
     !whiteboard.classList.contains('add-text')
   ) {
     e.preventDefault();

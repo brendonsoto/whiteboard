@@ -25,7 +25,7 @@ strong {
   font-size: 56px;
 }
 
-#whiteboard textarea {
+#whiteboard > div {
   background-color: transparent;
   border: none;
   resize: none;
@@ -36,14 +36,20 @@ strong {
 
   /* Disable any interactions until the text tool is active */
   pointer-events: none;
+
+  line-height: 1;
+  max-width: 500px;
+  padding: 15px;
 }
 
-#whiteboard textarea:focus {
+#whiteboard > div:focus {
   border: 1px solid black;
-  resize: both;
+  /* NOTE: to get resize to work overflow must be set, but that causes weird initial look */
+  /* overflow: auto; */
+  /* resize: both; */
 }
 
-#whiteboard.add-text textarea {
+#whiteboard.add-text > div {
   pointer-events: all;
 }
 
