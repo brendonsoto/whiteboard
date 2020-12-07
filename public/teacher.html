@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" href="/favicon.ico" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="Web site created using create-snowpack-app" />
+    <link rel="stylesheet" type="text/css" href="/index.css" />
+    <title>Snowpack App</title>
+  </head>
+  <body>
+    <section id="whiteboard">
+      <canvas id="canvas"></canvas>
+    </section>
+    <section id="tools">
+      <strong>Tools:</strong>
+      <ul>
+        <li>
+          <div class="tool-container">
+            <button class="tool" id="pen">
+              <img src="/pen.svg" alt="pen"/>
+            </button>
+            <button class="colour" data-tool="pen" data-colour="black"></button>
+            <div class="colour-picker hidden" data-tool="pen">
+              <button class="colour-choice" data-tool="pen" data-colour="red"></button>
+              <button class="colour-choice" data-tool="pen" data-colour="blue"></button>
+              <button class="colour-choice" data-tool="pen" data-colour="green"></button>
+              <button class="colour-choice" data-tool="pen" data-colour="purple"></button>
+              <button class="colour-choice" data-tool="pen" data-colour="yellow"></button>
+              <button class="colour-choice active" data-tool="pen" data-colour="black"></button>
+            </div>
+          </div>
+        </li>
+        <li><button class="tool" id="text">T</button></li>
+        <li><button class="tool" id="eraser"><img src="/eraser.svg" alt="eraser"></button></li>
+      </ul>
+    </section>
+    <section id="side">
+      <header id="selector">
+        <button class="active" data-view="admin">Admin</button>
+        <button data-view="chat">Chat</button>
+      </header>
+      <div class="component active" id="admin">
+        <ul>
+          <li class="admin">
+            <span>
+              Ms. S
+            </span>
+          </li>
+          <li>
+            <span>
+              Sam
+              <button title="Disable student from painting">
+                <img src="/tint.svg" alt="paint">
+              </button>
+              <button title="Disable student from chatting">
+                <img src="/comment.svg" alt="comment">
+              </button>
+            </span>
+          </li>
+        </ul>
+        <div class="side-footer">
+          <button title="Clear whiteboard" id="clear-btn">Clear board</button>
+          <button>Copy room link</button>
+        </div>
+      </div>
+      <div class="component" id="chat">
+        <div class="side-footer">
+          <textarea id="msg" name="msg" rows="2"></textarea>
+          <button>&uarr;</button>
+        </div>
+      </div>
+    </section>
+    <noscript>You need to enable JavaScript to run this app.</noscript>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/3.0.3/socket.io.js" integrity="sha512-Jr0UIR/Q8MUX+93zjDOhuDUKLqJZObtwpkLJQcR9qMaLgL0thet39IORuavUaZFkZ8a4ktrUsKPM9mf5LWMduA==" crossorigin="anonymous"></script>
+    <script>
+      const socket = io();
+    </script>
+    <script type="module" src="/_dist_/whiteboard.js"></script>
+  </body>
+</html>

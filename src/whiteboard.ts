@@ -1,3 +1,4 @@
+// NOTE `io` will be available from cdn script
 /** GLOBALS **/
 // DOM hooks
 const whiteboard = document.getElementById('whiteboard');
@@ -91,11 +92,18 @@ canvas.addEventListener('mousedown', (e) => {
   ctx.beginPath();
   ctx.moveTo(canvasX, canvasY);
   isPenDown = true;
+
+  // Send socket message to draw
+  // @ts-ignore
+  socket.emit('mousedown', e.pageX, e.pageY);
 });
 
 canvas.addEventListener('mouseup', (e) => {
   ctx.closePath();
   isPenDown = false;
+
+  // @ts-ignore
+  socket.emit('mouseup');
 });
 
 canvas.addEventListener('mousemove', (e) => {
@@ -108,6 +116,9 @@ canvas.addEventListener('mousemove', (e) => {
     canvasY = (e.pageY / canvasClientHeight) * canvasHeight;
     ctx.lineTo(canvasX, canvasY);
     ctx.stroke();
+
+    // @ts-ignore
+    socket.emit('mousemove', e.pageX, e.pageY);
   }
 });
 
@@ -230,4 +241,40 @@ document.querySelector('#selector').addEventListener('click', (e) => {
 /** ADMIN **/
 document.querySelector('#clear-btn').addEventListener('click', () => {
   ctx.clearRect(0, 0, canvas.width, canvas.height);
+});
+
+/** SOCKET **/
+// @ts-ignore
+socket.on('mousedown', (e: { pageX: number; pageY: number }) => {
+  // Close any active tool menus that may be open
+  document
+    .querySelectorAll('.colour-picker')
+    .forEach((elem) => elem.classList.add('hidden'));
+
+  /* NOTE The canvas has different dimensions than the browser window, so we're setting the correct coordinates here */
+  canvasX = (e.pageX / canvasClientWidth) * canvasWidth;
+  canvasY = (e.pageY / canvasClientHeight) * canvasHeight;
+  ctx.beginPath();
+  ctx.moveTo(canvasX, canvasY);
+  isPenDown = true;
+});
+
+// @ts-ignore
+socket.on('mouseup', () => {
+  ctx.closePath();
+  isPenDown = false;
+});
+
+// @ts-ignore
+socket.on('mousemove', (e: { pageX: number; pageY: number }) => {
+  if (!isPenDown) {
+    return;
+  }
+
+  if (isPenEnabled) {
+    canvasX = (e.pageX / canvasClientWidth) * canvasWidth;
+    canvasY = (e.pageY / canvasClientHeight) * canvasHeight;
+    ctx.lineTo(canvasX, canvasY);
+    ctx.stroke();
+  }
 });
